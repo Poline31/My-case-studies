@@ -1,0 +1,19 @@
+Process-Automation-Case-Study - Own project
+Ticket Quality Assessment Automation
+
+⚠️ Problem
+Manual ticket quality assessment was:
+
+⏳ time-consuming
+🤔 subjective
+🔄 inconsistent across analysts
+💡 Solution
+I created an Excel spreadsheet that:
+
+📥 aggregates data from ServiceNow tickets
+🧹 normalizes fields
+✅ automatically evaluates team performance (priority, categories, rule names and descriptions, closure reasons)
+🛠️ Technologies
+📊 Excel (pivot tables, formulas)
+🧮 scoring logic
+📈 quality metrics
