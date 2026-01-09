@@ -1,0 +1,18 @@
+CAUSE CODE CORECTNESS
+=SUMA(
+ (Tabela!$B$2:$B$1122="KLIENT")*
+ (Tabela!$G$2:$G$1122="CATEGORY")*
+ ((Tabela!$H$2:$H$1122="")+(Tabela!$H$2:$H$1122="SUB CATEGORY1"))*
+ ((Tabela!$I$2:$I$1122="SUB CATEGORY2")+(Tabela!$I$2:$I$1122="SUB CATEGORY2"))
+)
+
+PRIORITY
+=JEŻELI.BŁĄD(
+ JEŻELI(
+  LEWY(J14;1)=LEWY(TEKST(INDEKS(WIKI!E:E;PODAJ.POZYCJĘ(LEWY(K14;13);LEWY(WIKI!D:D;13);0));"@");1);
+  "OK";
+  "NOK");
+ "brak w WIKI")
+
+ INDIVIDUAL CHECK
+ =SUMA(JEŻELI((Tabela!T:T="Imie i nazwisko")*(Tabela!R:R="ok"); 1; 0))
