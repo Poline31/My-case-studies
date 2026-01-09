@@ -1,0 +1,69 @@
+> **Reading tip:** This report is structured for quick scanning.  
+> Bullet points highlight key intelligence judgments.
+
+## 🗓️ Background & Timeline
+
+### 🌍 Geopolitical Context
+- Late 2021 – early 2022: tensions rise between **Russia and Ukraine**
+- Russian military positioned near Ukraine’s borders
+- Diplomatic efforts failed to de-escalate
+- Russian-speaking media narratives increasingly negative toward Ukraine:
+- Kyiv portrayed as untrustworthy
+- Alleged nationalism threatening neighbors and citizens
+
+---
+
+### ⏱️ Timeline of the WhisperGate Campaign
+
+**December 2021**
+- Heightened cyber activity targeting Ukrainian government infrastructure
+- Possible reconnaissance and preparation
+- Social media and Russian-speaking media amplify tensions
+
+**January 13–14, 2022**
+- Defacement of multiple Ukrainian government websites
+- Systems infected with **WhisperGate**
+
+**Mid-January 2022**
+- Public disclosure by **Microsoft Threat Intelligence** and **ESET**
+- Classified as **destructive wiper**, not ransomware
+
+**February 24, 2022**
+- Russia launches full-scale invasion of Ukraine
+
+---
+
+### 🧠 Analytical Assessment
+- WhisperGate deployment likely a **preparatory or signaling operation**
+- Primary objectives:
+  - Disrupt operations
+  - Test defensive responses
+  - Create uncertainty among targeted organizations
+
+---
+
+## 🦠 Malware Overview 
+
+### Key Characteristics
+- Classified as **wiper**, not ransomware
+- Focused on **irreversible system damage**
+- Designed for **rapid deployment and high impact**
+
+### Technical Behavior (High-Level)
+- Overwrites **Master Boot Record (MBR)** → prevents system boot
+- Corrupts files by overwriting contents
+- Lacks long-term persistence or C2 infrastructure
+
+### Analytical Observations
+- Fake ransom note likely served a **deceptive / psychological purpose**
+- May have delayed incident response by mimicking ransomware
+- Design aligns with **short-term disruptive operations** during geopolitical escalation
+
+> **Assessment:** WhisperGate demonstrates how **low-complexity tooling** can produce **significant operational and psychological impact** when deployed at a strategically chosen moment.
+
+
+## Initial Access & Delivery
+## TTP Analysis (MITRE ATT&CK)
+## Attribution Assessment
+## Defensive Recommendations
+## Key Takeaways🗓️ Background & Timeline
