@@ -91,13 +91,13 @@ Malware components observed in common system directories:
 - Payload frequently named stage1.exe
 
 ### ⚙️ Delivery & Execution Flow
-Stage 1
+WhisperGate stage1.exe SHA256	a196c6b8ffcb97ffb276d04f354696e2391311db3841ae16c8c9f56f36a38e92	
 - Overwrites the Master Boot Record (MBR)
 - Displays a fake ransomware note
 - No recovery or decryption mechanism implemented
 
-Stage 2
-- stage2.exe acts as a downloader
+WhisperGate	stage2.exe SHA256	dcbbae5a1c61dbbbb7dcd6dc5dd1eb1169f5329958d38b58c3fd9384081c9b78
+- stage2.exe acts as a downloader sha256 WhisperGate  	
 - Retrieves and executes a file corrupter payload
 - Leads to irreversible file damage
 
@@ -105,3 +105,8 @@ Stage 2
 ## Attribution Assessment
 ## Defensive Recommendations
 ## Key Takeaways🗓️ Background & Timeline
+
+
+
+https://www.microsoft.com/en-us/security/blog/2022/01/15/destructive-malware-targeting-ukrainian-organizations/
+https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-057a
