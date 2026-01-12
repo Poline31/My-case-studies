@@ -63,6 +63,44 @@
 
 
 ## Initial Access & Delivery
+
+### Status
+- WhisperGate deployed inside multiple Ukrainian organizations
+- Malware execution observed after administrative access was already present
+- No confirmed evidence of the initial compromise vector
+❓ initial access vector: unknown
+- WhisperGate was not used to gain initial access
+
+### 🧰 Unproven Assessed (Not Confirmed) Initial Access Methods
+
+🔑 Compromised or reused credentials
+🛠️ Exploitation of unpatched or internet-facing services
+♻️ Abuse of existing access from earlier intrusions
+🧰 Use of legitimate administrative tools (Living-off-the-Land):
+- PowerShell
+- PsExec
+- Scheduled Tasks
+- Group Policy
+
+### 📦 Observed Delivery Artifacts
+Malware components observed in common system directories:
+- C:\PerfLogs\
+- C:\ProgramData\
+- C:\
+- C:\Temp\
+- Payload frequently named stage1.exe
+
+### ⚙️ Delivery & Execution Flow
+Stage 1
+- Overwrites the Master Boot Record (MBR)
+- Displays a fake ransomware note
+- No recovery or decryption mechanism implemented
+
+Stage 2
+- stage2.exe acts as a downloader
+- Retrieves and executes a file corrupter payload
+- Leads to irreversible file damage
+
 ## TTP Analysis (MITRE ATT&CK)
 ## Attribution Assessment
 ## Defensive Recommendations
