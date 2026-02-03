@@ -1,0 +1,46 @@
+Load data from the table
+Change Opened date type
+Sort picked columns up
+Group them by picked columns and aggregate accordingely
+Add column with "Flood name"
+	let
+	    // Sortujemy wiersze reguły
+	    sorted = Table.Sort([Wiersze], {{"Opened date", Order.Ascending}}),
+	 
+	    // Indeks
+	    indexed = Table.AddIndexColumn(sorted, "Idx", 0, 1, Int64.Type),
+	 
+	    // Lag
+	    lagged = Table.AddColumn(indexed, "PrevTime", each
+	        if [Idx] = 0 then null
+	        else indexed{[Idx]-1}[Opened date], type datetime),
+	 
+	    // DiffMin
+	    diff = Table.AddColumn(lagged, "DiffMin", each
+	        if [PrevTime] = null then null
+	        else Duration.TotalMinutes([Opened date] - [PrevTime]), type number),
+	 
+	    // Flaga IsNew – 1 przy przerwie >60 min
+	    isNew = Table.AddColumn(diff, "IsNew", each
+	        if [DiffMin] = null or [DiffMin] > 60 then 1 else 0, Int64.Type),
+	 
+	    // Kumulacja FloodID – to kluczowe rozbicie
+	    withFloodId = Table.AddColumn(isNew, "FloodID", each
+	        List.Sum(List.FirstN(isNew[IsNew], [Idx] + 1)), Int64.Type),
+	 
+	    // Grupujemy po FloodID – osobny wiersz dla każdej sekwencji
+	    grouped = Table.Group(withFloodId, {"FloodID"}, {
+	        {"StartTime", each List.Min([Opened date]), type datetime},
+	        {"EndTime",   each List.Max([Opened date]), type datetime},
+	        {"AlertCount", each Table.RowCount(_), Int64.Type},
+	        {"MaxGapMin", each List.Max(Table.SelectRows(withFloodId, each [FloodID] = [FloodID])[DiffMin] ?? {0}), type number},
+	        {"MaxIsNew", each List.Max(Table.SelectRows(withFloodId, each [FloodID] = [FloodID])[IsNew] ?? {0}), type number}
+	    }),
+	 
+	    // Filtr >=5 alertów
+	    filtered = Table.SelectRows(grouped, each [AlertCount] >= 5) in
+    filtered
+
+Take everything out, change StartTime/EndTime 
+Load into table
+
