@@ -14,6 +14,6 @@ I created an Excel spreadsheet that:
 🧹 normalizes fields
 ✅ automatically evaluates team performance (priority, categories, rule names and descriptions, closure reasons)
 🛠️ Technologies
-📊 Excel (pivot tables, formulas)
+📊 Excel (pivot tables, formulas,Power Query)
 🧮 scoring logic
 📈 quality metrics
