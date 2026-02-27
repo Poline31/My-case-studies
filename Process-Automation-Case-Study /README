@@ -10,9 +10,10 @@ Manual ticket quality assessment was:
 💡 Solution
 I created an Excel spreadsheet that:
 
-📥 aggregates data from ServiceNow tickets
+📥 aggregates data from tickets
 🧹 normalizes fields
 ✅ automatically evaluates team performance (priority, categories, rule names and descriptions, closure reasons)
+
 🛠️ Technologies
 📊 Excel (pivot tables, formulas,Power Query)
 🧮 scoring logic
