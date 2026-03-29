@@ -1,8 +1,12 @@
-Load data from the table
-Change Opened date type
-Sort picked columns up
-Group them by picked columns and aggregate accordingely
-Add column with "Flood name"
+**Power Query**
+
+
+- Load data from the table
+- Change Opened date type
+- Sort picked columns up
+- Group them by picked columns and aggregate accordingely
+- Add column with "Flood name"
+
 	let
 	    // Sortujemy wiersze reguły
 	    sorted = Table.Sort([Wiersze], {{"Opened date", Order.Ascending}}),
