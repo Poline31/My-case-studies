@@ -17,5 +17,5 @@ EXAMPLE
   "NOK");
  "brak w WIKI")
 
- INDIVIDUAL CHECK
+ **INDIVIDUAL CHECK**
  =SUMA(JEŻELI((Tabela!T:T="Imie i nazwisko")*(Tabela!R:R="ok"); 1; 0))
