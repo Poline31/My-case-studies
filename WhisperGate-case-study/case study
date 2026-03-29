@@ -134,6 +134,8 @@
 - Attack resulted in complete system and data destruction, not encryption 💣
 - Impact focused on availability and integrity, not confidentiality 🎯
 
+According to MITRE, whispergate is connected to Russian APT Ember Bear - active since at least 2020 and linked to 161st Specialist Training Center (Unit 29155).
+
 https://www.microsoft.com/en-us/security/blog/2022/01/15/destructive-malware-targeting-ukrainian-organizations/
 https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-057a
 https://www.crowdstrike.com/en-us/blog/technical-analysis-of-whispergate-malware/
