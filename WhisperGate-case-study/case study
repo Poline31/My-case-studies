@@ -61,53 +61,80 @@
 
 > **Assessment:** WhisperGate demonstrates how **low-complexity tooling** can produce **significant operational and psychological impact** when deployed at a strategically chosen moment.
 
+🚪 Initial Access
+- No confirmed technique used by WhisperGate ❌
+- Malware deployed after compromise
+- Likely use of valid accounts or prior intrusion 🔑
 
-## Initial Access & Delivery
+⚙️ Execution
+- Execution via scripts and system tools ⚙️
 
-### Status
-- WhisperGate deployed inside multiple Ukrainian organizations
-- Malware execution observed after administrative access was already present
-- No confirmed evidence of the initial compromise vector
-❓ initial access vector: unknown
-- WhisperGate was not used to gain initial access
+🔧 Observed Techniques
+- PowerShell execution (T1059.001) 🖥️
+- Windows Command Shell (T1059.003) 💻
+- Visual Basic scripts (T1059.005) 📜
+- Service execution via sc.exe (T1569.002) 🔁
 
-### 🧰 Unproven Assessed (Not Confirmed) Initial Access Methods
+📌 Persistence
+- No strong persistence mechanisms observed 
+- Limited use of scheduled/system services ⚙️
+- Attack focused on immediate execution and impact
+- Persistence not required for operation
 
-🔑 Compromised or reused credentials
-🛠️ Exploitation of unpatched or internet-facing services
-♻️ Abuse of existing access from earlier intrusions
-🧰 Use of legitimate administrative tools (Living-off-the-Land):
-- PowerShell
-- PsExec
-- Scheduled Tasks
-- Group Policy
+⬆️ Privilege Escalation
+- Privilege escalation not clearly observed ⚠️
+- Access Token Manipulation (T1134.002) 🔑
+- Execution under elevated context (TrustedInstaller)
+- Required high privileges for destructive actions
 
-### 📦 Observed Delivery Artifacts
-Malware components observed in common system directories:
-- C:\PerfLogs\
-- C:\ProgramData\
-- C:\
-- C:\Temp\
-- Payload frequently named stage1.exe
+🛡️ Defense Evasion
+- Multiple evasion techniques observed 🎭
+- Obfuscated/encoded payloads (T1027) 🔐
+- Masquerading as JPG files (T1036) 🖼️
+- Disable Windows Defender (T1562.001) 🛑
+- Indicator removal via file deletion (T1070.004) 🧹
+- Sandbox evasion (T1497) 🧪
 
-### ⚙️ Delivery & Execution Flow
-WhisperGate stage1.exe SHA256	a196c6b8ffcb97ffb276d04f354696e2391311db3841ae16c8c9f56f36a38e92	
-- Overwrites the Master Boot Record (MBR)
-- Displays a fake ransomware note
-- No recovery or decryption mechanism implemented
+🔍 Discovery
+- Performs system and network discovery 🔍
+- File and directory discovery (T1083) 📂
+- Network share discovery (T1135) 🌐
+- Local storage discovery (T1680) 💽
+- Security software discovery (T1518.001) 🛡️
 
-WhisperGate	stage2.exe SHA256	dcbbae5a1c61dbbbb7dcd6dc5dd1eb1169f5329958d38b58c3fd9384081c9b78
-- stage2.exe acts as a downloader sha256 WhisperGate  	
-- Retrieves and executes a file corrupter payload
-- Leads to irreversible file damage
+🔁 Lateral Movement
+- Not directly embedded in malware ⚠️
+- Likely enabled via external tools (e.g. PsExec)
+- Uses existing administrative access
 
-## TTP Analysis (MITRE ATT&CK)
-## Attribution Assessment
-## Defensive Recommendations
-## Key Takeaways🗓️ Background & Timeline
+📡 Command & Control
+- Limited C2 functionality ⚠️
+- Web protocols (HTTPS) (T1071.001) 🌐
+- Web services (Discord CDN) (T1102) 📡
+- Ingress tool transfer (T1105) 📦
+- No long-term beaconing or control
 
+📦 Collection
+- No data collection observed ❌
+- Attack not focused on exfiltration
+- Purely destructive intent
 
+🚀 Exfiltration
+- No exfiltration activity ❌
+📌 Description
+
+🎯 Impact
+- Primary objective: destruction 💣
+- Data destruction (T1485) 💥
+- Disk content wipe (T1561.001) 💽
+- MBR overwrite (T1561.002 / T1542.003) 🛑
+- System shutdown/reboot (T1529) 🔄
+
+📊 Conclusion
+- Attack resulted in complete system and data destruction, not encryption 💣
+- Impact focused on availability and integrity, not confidentiality 🎯
 
 https://www.microsoft.com/en-us/security/blog/2022/01/15/destructive-malware-targeting-ukrainian-organizations/
 https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-057a
 https://www.crowdstrike.com/en-us/blog/technical-analysis-of-whispergate-malware/
+https://mitre-attack.github.io/attack-navigator//#layerURL=https%3A%2F%2Fattack.mitre.org%2Fsoftware%2FS0689%2FS0689-enterprise-layer.json
