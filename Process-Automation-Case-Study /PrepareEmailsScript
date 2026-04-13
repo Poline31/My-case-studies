@@ -1,0 +1,138 @@
+VBA 
+
+Sub CreateDraftEmails()
+
+    Dim tbl As Object
+
+    Dim r As Object
+
+    Dim analyst As Variant
+
+    Dim dict As Object
+
+    Dim html As String
+
+    Dim OutApp As Object
+
+    Dim OutMail As Object
+
+    Dim i As Integer
+
+    Dim headers As Variant
+
+    ' nagłówki tabeli (A–M)
+
+    headers = Array( _
+
+        "Ticket Number", _
+
+        "Date", _
+
+        "Customer", _
+
+        "Summary", _
+
+        "Shift", _
+
+        "Analyst", _
+
+        "Comments", _
+
+        "Additional comments", _
+
+        "Category", _
+
+
+    )
+
+    Set tbl = ActiveSheet.ListObjects(1)
+
+    Set dict = CreateObject("Scripting.Dictionary")
+
+    ' zbierz unikalnych analystów (kolumna F)
+
+    For Each r In tbl.ListRows
+
+        If Len(r.Range.Cells(1, 6).Value) > 0 Then
+
+            If Not dict.exists(r.Range.Cells(1, 6).Value) Then
+
+                dict.Add r.Range.Cells(1, 6).Value, ""
+
+            End If
+
+        End If
+
+    Next r
+
+    Set OutApp = CreateObject("Outlook.Application")
+
+    ' dla każdego analityka twórz osobny draft
+
+    For Each analyst In dict.Keys
+
+        html = "<html><body>"
+
+        html = html & "<p>Hi " & analyst & ",</p>"
+
+        html = html & "<p>Your monthly results:</p>"
+
+        ' start tabeli
+
+        html = html & "<table border='1' cellpadding='5' cellspacing='0' "
+
+        html = html & "style='border-collapse:collapse;font-family:Calibri;font-size:11pt;'>"
+
+        ' nagłówki opisowe
+
+        html = html & "<tr>"
+
+        For i = 0 To UBound(headers)
+
+            html = html & "<th>" & headers(i) & "</th>"
+
+        Next i
+
+        html = html & "</tr>"
+
+        ' dane tylko tego analityka
+
+        For Each r In tbl.ListRows
+
+            If r.Range.Cells(1, 6).Value = analyst Then
+
+                html = html & "<tr>"
+
+                For i = 1 To 13
+
+                    html = html & "<td>" & r.Range.Cells(1, i).Value & "</td>"
+
+                Next i
+
+                html = html & "</tr>"
+
+            End If
+
+        Next r
+
+        html = html & "</table>"
+
+        html = html & "<p>Regards,<br>Paulina</p>"
+
+        html = html & "</body></html>"
+
+        Set OutMail = OutApp.CreateItem(0)
+
+        With OutMail
+
+            .Subject = "Monthly results"
+
+            .HTMLBody = html
+
+            .Display   ' DRAFT – nie wysyła
+
+        End With
+
+    Next analyst
+
+End Sub
