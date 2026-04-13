@@ -1,0 +1,39 @@
+VBA
+
+	' ==========================================
+
+	' Clear data in "Table - my review"
+
+	' (keep headers and columns)
+
+	' ==========================================
+
+	Sub ClearTabelaKeepColumns()
+
+	    Dim ws As Worksheet
+
+	    Dim lastRow As Long
+
+	    Dim lastCol As Long
+
+	    
+
+	    Set ws = ThisWorkbook.Worksheets("Table - my review")
+
+	    
+
+	    lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row
+
+	    lastCol = ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column
+
+	    
+
+	    If lastRow > 1 Then
+
+	        ws.Range(ws.Cells(2, 1), ws.Cells(lastRow, lastCol)).ClearContents
+
+	    End If
+
+	    
+
+End Sub
